@@ -1,0 +1,12 @@
+# Web framework / server (autogen itself is installed from the vendored
+# source in vendor/autogen during the Docker build — see Dockerfile).
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+websockets==14.1
+python-multipart==0.0.20
+
+# Extras required by autogen-ext[openai].
+openai>=1.93
+tiktoken>=0.8.0
+aiofiles

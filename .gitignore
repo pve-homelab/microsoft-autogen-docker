@@ -1,0 +1,21 @@
+# Node dependencies and build output
+frontend/node_modules/
+frontend/dist/
+
+# Python caches
+**/__pycache__/
+**/*.pyc
+
+# Local generated output
+backend/output/
+output/
+
+# Vendored repository metadata and excluded platform artifacts
+vendor/autogen/.git/
+vendor/autogen/dotnet/
+vendor/autogen/docs/
+vendor/autogen/**/node_modules/
+
+# Local files
+.env
+*.log

@@ -1,0 +1,22 @@
+# Optional convenience wrapper around the single image.
+#   docker compose up --build
+# Then open http://localhost:3000
+services:
+  autogen-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: autogen-builder
+    ports:
+      - "3000:3000"
+    environment:
+      # Point this at your local OpenAI-compatible /v1 endpoint.
+      MODEL_BASE_URL: http://host.docker.internal:8000/v1
+      MODEL_API_KEY: none
+      MODEL_NAME: local-model
+    volumes:
+      # Generated files land in ./output on the host.
+      - ./output:/app/output
+    extra_hosts:
+      # Lets the container reach a model server running on the host (Linux).
+      - "host.docker.internal:host-gateway"
