@@ -17,20 +17,15 @@ No Microsoft services. No Azure. No cloud. Everything runs locally.
 ## Quick start
 
 ```bash
-# 1. Build the single image
-docker build -t autogen-builder .
-
-# 2. Run it (maps the UI/API port and mounts an output directory)
-docker run -p 3000:3000 -v /my/output:/app/output autogen-builder
+# Pull and start the published single image
+docker compose up -d --pull always
 ```
 
 Then open <http://localhost:3000>.
 
-Or with Docker Compose:
-
-```bash
-docker compose up --build
-```
+The Compose file pulls the published image from GHCR; no local build or
+repository checkout is required. To stop it, run `docker compose down`.
+The image is rebuilt and published automatically whenever `main` changes.
 
 ---
 
@@ -83,7 +78,7 @@ or a message cap is reached.
 ```
 .
 ├── Dockerfile              # single multi-stage image (node build → python runtime)
-├── docker-compose.yml      # optional convenience wrapper
+├── docker-compose.yml      # single-image pull-and-run deployment
 ├── .env.example            # environment variables
 ├── backend/
 │   ├── requirements.txt    # web deps (autogen installed from vendor/ in Docker)

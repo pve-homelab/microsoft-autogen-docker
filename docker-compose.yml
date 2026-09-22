@@ -1,12 +1,11 @@
-# Optional convenience wrapper around the single image.
-#   docker compose up --build
+# Single-image deployment. The image is published to GHCR by the workflow in
+# .github/workflows/publish-image.yml.
+#   docker compose up -d --pull always
 # Then open http://localhost:3000
 services:
-  autogen-builder:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: autogen-builder
+  autogen:
+    image: ghcr.io/pve-homelab/microsoft-autogen-docker:main
+    pull_policy: always
     ports:
       - "3000:3000"
     environment:
